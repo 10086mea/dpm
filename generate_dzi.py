@@ -41,7 +41,7 @@ def generate_dzi_file_mhj(paint_id, info=None):
     if info is None: info = get_info_mhj()
 
     # get key and vi and use them to decrypt the encrypted string
-    #for i in range(len(info)): #输出info进行测试
+    #for i in range(len(info)): #输出info进行测试，检查info内容
     #    print(info2bytes(info[i]))
     key = info2bytes(info[3])
     iv = info2bytes(info[5])
