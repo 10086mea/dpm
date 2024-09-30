@@ -41,8 +41,10 @@ def generate_dzi_file_mhj(paint_id, info=None):
     if info is None: info = get_info_mhj()
 
     # get key and vi and use them to decrypt the encrypted string
-    key = info2bytes(info[1])
-    iv = info2bytes(info[4])
+    #for i in range(len(info)): #输出info进行测试
+    #    print(info2bytes(info[i]))
+    key = info2bytes(info[3])
+    iv = info2bytes(info[5])
 
     for idx, item in enumerate(image_items):
         paint_detail_url = f'{paint_url}&type={item.get("value")}'
@@ -51,18 +53,18 @@ def generate_dzi_file_mhj(paint_id, info=None):
         decrypted = decrypt(encrypted, key, iv)
 
         # get xmlns and overlap
-        xmlns = info2bytes(info[28]).decode('utf-8')
-        overlap = info2bytes(info[29]).decode('utf-8')
+        xmlns = info2bytes(info[29]).decode('utf-8')
+        overlap = info2bytes(info[30]).decode('utf-8')
 
         # create dzi file
         dzi_info = {
             'xmlns': xmlns,
-            'url': decrypted[0],
-            'overlap': overlap,
-            'tilesize': decrypted[4],
-            'format': decrypted[1],
-            'width': str(int(float(decrypted[2]))),
-            'height': str(int(float(decrypted[3])))
+            'url': decrypted[2],
+            'overlap': decrypted[5],
+            'tilesize': decrypted[1],
+            'format': decrypted[0],
+            'width': str(int(float(decrypted[4]))),
+            'height': str(int(float(decrypted[3]))) #修改了列表索引 2024年9月30日
         }
         if len(image_items) == 1:
             dzi_filename = f'{paint_id}.dzi'
