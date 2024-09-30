@@ -1,5 +1,5 @@
 This repository contains scripts for downloading images from the Palace Museum. It supports both [*Minghuaji*](https://minghuaji.dpm.org.cn/) (故宫名画记) and [the collections on the official website](https://www.dpm.org.cn/explore/collections.html) .
-#改动
+# 改动
 修改了generate_dzi_file_mhj中info和decrypted的列表索引使其能够匹配最新的列表
 ## Usage
 
